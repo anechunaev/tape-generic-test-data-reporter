@@ -1,0 +1,22 @@
+{
+	"name": "tape-generic-test-data-reporter",
+	"version": "1.0.0",
+	"description": "Tape test result reporter in Generic Test Data format",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [],
+	"author": "Artem Nechunaev <artem@nechunaev.com>",
+	"license": "MIT",
+	"dependencies": {
+		"tap-parser": "^9.3.2"
+	},
+	"bin": {
+		"tape-generic-test-data-reporter": "./index.js"
+	},
+	"files": [
+		"README.md",
+		"index.js"
+	]
+}
