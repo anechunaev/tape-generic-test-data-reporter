@@ -18,5 +18,12 @@
 	"files": [
 		"README.md",
 		"index.js"
-	]
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/bungu/tape-generic-test-data-reporter"
+	},
+	"bugs": {
+		"url": "https://github.com/bungu/tape-generic-test-data-reporter/issues"
+	}
 }
