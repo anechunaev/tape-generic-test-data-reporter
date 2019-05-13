@@ -9,7 +9,7 @@ if (process.argv.indexOf('--help') > 0 || process.argv.indexOf('-h') > 0) {
 
 	Usage:
 	  tape test.js | tape-generic-test-data-reporter [OPTIONS]
-	
+
 	Options:
 	  -h,         --help          Print command line options.
 	  -f <file>,  --file <file>   If present, writes report to given path, otherwise prints to stdout.`.replace(/\t/g, ''));
@@ -69,7 +69,7 @@ const p = new Parser(function parseTapReportCallback(results) {
 		fs.writeFile(reportPath, report, function writeReportCallback(err) {
 			if (err) {
 				process.exitCode = 1;
-				return console.log(err);
+				return console.error(err);
 			}
 		});
 	} else {
