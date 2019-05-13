@@ -10,6 +10,7 @@
 	"author": "Artem Nechunaev <artem@nechunaev.com>",
 	"license": "MIT",
 	"dependencies": {
+		"mkdirp": "^0.5.1",
 		"tap-parser": "^9.3.2"
 	},
 	"bin": {

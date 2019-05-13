@@ -2,6 +2,7 @@
 
 const Parser = require('tap-parser');
 const fs = require('fs');
+const mkdirp = require('mkdirp');
 
 // Print help
 if (process.argv.indexOf('--help') > 0 || process.argv.indexOf('-h') > 0) {
@@ -66,11 +67,30 @@ const p = new Parser(function parseTapReportCallback(results) {
 	const report = reportStart + list.join('') + reportEnd;
 
 	if (reportPath) {
-		fs.writeFile(reportPath, report, function writeReportCallback(err) {
-			if (err) {
+		const dirArr = reportPath.split('/');
+		dirArr.splice(-1);
+		const dir = dirArr.join('/');
+
+		mkdirp(dir, '0777', function createGivenDirectories(mkdirError) {
+			if (mkdirError) {
 				process.exitCode = 1;
-				return console.error(err);
+				return console.error('Cannot create given directories', mkdirError);
 			}
+
+			fs.closeSync(fs.openSync(reportPath, 'w'));
+			fs.access(reportPath, fs.constants.W_OK, function reportFileAccessCheck(accessError) {
+				if (accessError) {
+					process.exitCode = 1;
+					return console.error('No writing access to given file', accessError);
+				}
+
+				fs.writeFile(reportPath, report, function writeReportCallback(writeError) {
+					if (writeError) {
+						process.exitCode = 1;
+						return console.error('Error while writing report', writeError);
+					}
+				});
+			});
 		});
 	} else {
 		console.log(report);
