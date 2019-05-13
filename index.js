@@ -75,6 +75,8 @@ const p = new Parser(function parseTapReportCallback(results) {
 	} else {
 		console.log(report);
 	}
+
+	process.exitCode = results.failures.length ? 1 : 0;
 });
 
 process.stdin.pipe(p);
